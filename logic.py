@@ -1,3 +1,4 @@
+import random
 from random import randint
 
 import requests
@@ -9,7 +10,8 @@ class Pokemon:
     def __init__(self, pokemon_trainer):
 
         self.pokemon_trainer = pokemon_trainer   
-
+        self.hp = random.randint(1,100)
+        self.power = random.randint(1,10)
         self.pokemon_number = randint(1,1000)
         self.img = self.get_img()
         self.name = self.get_name()
@@ -39,11 +41,28 @@ class Pokemon:
 
     # Метод класса для получения информации
     def info(self):
-        return f"Имя твоего покеомона: {self.name}"
+        return f"""Имя твоего покеомона: {self.name}
+сила покемона: {self.power}
+здоровье покемона {self.hp}"""
+
+    def attack(self, enemy):
+        if enemy.hp > self.power:
+            enemy.hp -= self.power
+            return f"сражение @{self.pokemon_trainer} с @{enemy.pokemon_trainer}"
+        else:
+            enemy.hp = 0
+            return f"победа @{self.pokemon_trainer} над @{enemy.pokemon_trainer}"
 
     # Метод класса для получения картинки покемона
     def show_img(self):
         return self.img
+
+
+class Fighter(Pokemon):
+    pass
+
+class Wizzard(Pokemon):
+    pass
 
 
 

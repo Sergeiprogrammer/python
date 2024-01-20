@@ -1,7 +1,7 @@
 import telebot 
 from config import token
 
-from turtle_test import Pokemon
+from logic import Pokemon
 
 bot = telebot.TeleBot(token) 
 
